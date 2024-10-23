@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "C runtasks",
+            "type": "shell",
+            "command": "C:/ToolChain/mingw64/bin/gcc.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}\\scr\\*c",
+                "-I",
+                "${workspaceFolder}\\include",
+                "-o",
+                "${workspaceFolder}\\output\\${workspaceRootFolderName}.exe",
+                "-fexec-charset=GBK"
+            ],
+            "options": {
+                "cwd": "C:/ToolChain/mingw64/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "自己创建的生成任务"
+        },
+        {
+            "label": "run and pause",
+            "type": "pause-console",
+            "args": [],
+            "command": "${workspaceFolder}\\output\\${workspaceRootFolderName}.exe",
+            "dependsOn": "C runtasks",
+            "options": {
+              "cwd": "${fileDirname}",
+              "env": {
+              "Path": "C:\\ToolChain\\mingw64\\bin;${env:Path}"
+              }
+            },
+            "presentation": {
+              "clear": false,
+              "echo": false,
+              "focus": false,
+              "panel": "shared",
+              "reveal": "never",
+              "showReuseMessage": false
+            },
+            "problemMatcher": [],
+            "detail": "使用pause-console插件运行程序"
+          },
+    ]
+}
